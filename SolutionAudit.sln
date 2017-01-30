@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{8AACB41C-9956-491D-8937-BC5CB01AF41E}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionAudit", "SolutionAudit\SolutionAudit.csproj", "{E4433722-2A85-405A-A1C2-4A0A983673D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionAudit.Tests", "SolutionAudit.Tests\SolutionAudit.Tests.csproj", "{1949296E-88BE-49F8-ABCB-77463341B2FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE4783BC-3A92-4F11-B6B3-FB3424932E77}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4433722-2A85-405A-A1C2-4A0A983673D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4433722-2A85-405A-A1C2-4A0A983673D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4433722-2A85-405A-A1C2-4A0A983673D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4433722-2A85-405A-A1C2-4A0A983673D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1949296E-88BE-49F8-ABCB-77463341B2FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1949296E-88BE-49F8-ABCB-77463341B2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1949296E-88BE-49F8-ABCB-77463341B2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1949296E-88BE-49F8-ABCB-77463341B2FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

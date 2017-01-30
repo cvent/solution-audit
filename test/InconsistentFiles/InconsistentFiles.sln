@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.DuplicatePackagesEntry", "InconsistentFiles.DuplicatePackagesEntry\InconsistentFiles.DuplicatePackagesEntry.csproj", "{F4B132BC-2642-4943-988F-1A59FD761A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.MissingInPackagesConfig", "InconsistentFiles.MissingInPackagesConfig\InconsistentFiles.MissingInPackagesConfig.csproj", "{1E270849-3F52-4DAE-9DE8-C603D96B0E75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.MissingInCsproj", "InconsistentFiles.MissingInCsproj\InconsistentFiles.MissingInCsproj.csproj", "{4B6C5412-2670-4B35-97DC-DB68ED41A1DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.OnlyBindingRedirect", "InconsistentFiles.OnlyBindingRedirect\InconsistentFiles.OnlyBindingRedirect.csproj", "{67BE4C1F-2AF2-4F7C-A39D-458742EBFE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.BadProjectRefGuid", "InconsistentFiles.BadProjectRefGuid\InconsistentFiles.BadProjectRefGuid.csproj", "{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F4B132BC-2642-4943-988F-1A59FD761A51} = {F4B132BC-2642-4943-988F-1A59FD761A51}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4B132BC-2642-4943-988F-1A59FD761A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B132BC-2642-4943-988F-1A59FD761A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B132BC-2642-4943-988F-1A59FD761A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B132BC-2642-4943-988F-1A59FD761A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E270849-3F52-4DAE-9DE8-C603D96B0E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E270849-3F52-4DAE-9DE8-C603D96B0E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E270849-3F52-4DAE-9DE8-C603D96B0E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E270849-3F52-4DAE-9DE8-C603D96B0E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B6C5412-2670-4B35-97DC-DB68ED41A1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B6C5412-2670-4B35-97DC-DB68ED41A1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B6C5412-2670-4B35-97DC-DB68ED41A1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B6C5412-2670-4B35-97DC-DB68ED41A1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67BE4C1F-2AF2-4F7C-A39D-458742EBFE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67BE4C1F-2AF2-4F7C-A39D-458742EBFE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67BE4C1F-2AF2-4F7C-A39D-458742EBFE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67BE4C1F-2AF2-4F7C-A39D-458742EBFE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
