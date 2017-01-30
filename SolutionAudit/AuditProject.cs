@@ -1,4 +1,18 @@
-﻿using System;
+// Copyright 2017 Cvent, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,7 +70,7 @@ namespace SolutionAudit
             MissingPackageReferences = options.FileDiff
                 ? GetMissingPackageReferences()
                 : Enumerable.Empty<InconsistentFiles>();
-            
+
             // Duplicate Package References
             DuplicatePackageReferences = options.FileDiff
                 ? GetDuplicatePackageReferences()
@@ -170,7 +184,7 @@ namespace SolutionAudit
 
         private IEnumerable<SnapshotPackage> SnapshotPackages { get; set; }
 
-        public IEnumerable<InconsistentFiles> MissingPackageReferences { get; set; } 
+        public IEnumerable<InconsistentFiles> MissingPackageReferences { get; set; }
         private IEnumerable<InconsistentFiles> GetMissingPackageReferences()
         {
             var configOnlyReferences = ConfigReferences.Except(CsprojReferences)
@@ -206,7 +220,7 @@ namespace SolutionAudit
             var configDuplicates = ConfigReferences
                 .Duplicates()
                 .Select(r => new DuplicatePackageReference(r, "packages.config"));
-            
+
             var csprojDuplicates = MsBuildProject.GetDirectPackageAssemblies()
                 .SelectMany(p => p, (grouping, s) => new {grouping, s})
                 .DuplicatesBy(a => a.s)
@@ -230,7 +244,7 @@ namespace SolutionAudit
             var nugetTargets = MsBuildProject.Targets
                 .Where(t => t.Key == "EnsureNuGetPackageBuildImports")
                 .SelectMany(
-                    t => t.Value.Children.Where(c => c.Condition.ToLower().Contains("nuget.targets")), 
+                    t => t.Value.Children.Where(c => c.Condition.ToLower().Contains("nuget.targets")),
                     (t, c) =>  IllegalProjectFileElement.FromElement(c));
 
             var nugetTargetImports = MsBuildProject.Imports
@@ -243,7 +257,7 @@ namespace SolutionAudit
         public string VsCommand()
         {
             var sb = new StringBuilder();
-            
+
             UnusedPackages.ForEach(p => sb.AppendFormat("{0} -Project {1}\n", p.VsCommand(), RoslynProject.Name));
             MissingPackages.ForEach(p => sb.AppendFormat("{0} -Project {1}\n", p.VsCommand(), RoslynProject.Name));
 
@@ -251,7 +265,7 @@ namespace SolutionAudit
             {
                 InconsistentPackages.ForEach(p => sb.AppendLine(p.VsCommand()));
             }
-            
+
             // These do not have Visual Studio Commands yet
             //SnapshotPackages.ForEach(p => sb.AppendFormat("{0} -Project {1}\n", p.VsCommand(), RoslynProject.Name));
             //CsprojOnlyReferences.ForEach(p => sb.AppendFormat("{0} -Project {1}\n", p.VsCommand(), RoslynProject.Name));
