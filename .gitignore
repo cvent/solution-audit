@@ -1,0 +1,11 @@
+packages/
+[Bb]in/
+[Oo]bj/
+*.suo
+*.user
+target/
+deploy/
+*.sln.ide
+.paket/paket.exe
+TestResult.xml
+*.userprefs

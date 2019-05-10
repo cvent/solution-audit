@@ -18,15 +18,15 @@ using NuGet.Runtime;
 
 namespace SolutionAudit.AuditInformation
 {
-    public class OrphanAssemblyBinding : Wrapper<AssemblyBinding>
+    public class OrphanOrMismatchAssemblyBinding : Wrapper<AssemblyBinding>
     {
-        public OrphanAssemblyBinding(AssemblyBinding wrapped) : base(wrapped)
+        public OrphanOrMismatchAssemblyBinding(AssemblyBinding wrapped) : base(wrapped)
         {
         }
 
         public override string ToString()
         {
-            return string.Format("& {0} (Only present as an assembly binding)", Wrapped.Name);
-        }
-    }
+            return string.Format("& {0} (Only present or mismatched version in assembly binding)", Wrapped.Name);
+    	}
+	}
 }
