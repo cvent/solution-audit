@@ -34,306 +34,39 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework'">
-      <Choose>
-        <When Condition="$(TargetFrameworkVersion) == 'v1.0'">
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </When>
-        <When Condition="$(TargetFrameworkVersion) == 'v1.1'">
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </When>
-        <When Condition="$(TargetFrameworkVersion) == 'v2.0'">
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </When>
-        <When Condition="$(TargetFrameworkVersion) == 'v3.5'">
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </When>
-        <When Condition="$(TargetFrameworkVersion) == 'v4.0' And $(TargetFrameworkProfile) == 'Client'">
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </When>
-        <When Condition="$(TargetFrameworkVersion) == 'v4.0'">
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </When>
-        <Otherwise>
-          <ItemGroup>
-            <Reference Include="nunit.framework">
-              <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-            <Reference Include="Roslyn.Compilers.CSharp">
-              <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-            <Reference Include="Roslyn.Compilers">
-              <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-            <Reference Include="Roslyn.Services.CSharp">
-              <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-            <Reference Include="Roslyn.Services">
-              <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-            <Reference Include="Roslyn.Utilities">
-              <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-              <Private>True</Private>
-              <Paket>True</Paket>
-            </Reference>
-          </ItemGroup>
-        </Otherwise>
-      </Choose>
-    </When>
-    <When Condition="$(TargetFrameworkIdentifier) == 'MonoAndroid'">
-      <ItemGroup>
-        <Reference Include="nunit.framework">
-          <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers.CSharp">
-          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers">
-          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services.CSharp">
-          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Utilities">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="$(TargetFrameworkIdentifier) == 'MonoTouch'">
-      <ItemGroup>
-        <Reference Include="nunit.framework">
-          <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers.CSharp">
-          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers">
-          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services.CSharp">
-          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Utilities">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="$(TargetFrameworkIdentifier) == 'Silverlight'">
-      <ItemGroup>
-        <Reference Include="nunit.framework">
-          <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers.CSharp">
-          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers">
-          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services.CSharp">
-          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Utilities">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="$(TargetFrameworkIdentifier) == 'Windows'">
-      <ItemGroup>
-        <Reference Include="nunit.framework">
-          <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers.CSharp">
-          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers">
-          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services.CSharp">
-          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Utilities">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <When Condition="$(TargetFrameworkIdentifier) == 'WindowsPhoneApp'">
-      <ItemGroup>
-        <Reference Include="nunit.framework">
-          <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers.CSharp">
-          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers">
-          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services.CSharp">
-          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Utilities">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="nunit.framework">
-          <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers.CSharp">
-          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Compilers">
-          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services.CSharp">
-          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Services">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="Roslyn.Utilities">
-          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
   <ItemGroup>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnitTestAdapter\tools\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>..\packages\NUnitTestAdapter\tools\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\packages\NUnitTestAdapter\tools\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnitTestAdapter\tools\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnitTestAdapter\tools\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnitTestAdapter\tools\nunit.core.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnitTestAdapter\tools\nunit.util.dll</HintPath>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.1.1.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnitTestAdapter\tools\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Remoting" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -390,4 +123,60 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+      <Paket>True</Paket>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
+      <ItemGroup>
+        <Reference Include="Roslyn.Compilers">
+          <HintPath>..\packages\Roslyn.Compilers.Common\lib\net45\Roslyn.Compilers.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
+      <ItemGroup>
+        <Reference Include="Roslyn.Compilers.CSharp">
+          <HintPath>..\packages\Roslyn.Compilers.CSharp\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
+      <ItemGroup>
+        <Reference Include="Roslyn.Services">
+          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Services.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="Roslyn.Utilities">
+          <HintPath>..\packages\Roslyn.Services.Common\lib\net45\Roslyn.Utilities.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2' Or $(TargetFrameworkVersion) == 'v4.8')">
+      <ItemGroup>
+        <Reference Include="Roslyn.Services.CSharp">
+          <HintPath>..\packages\Roslyn.Services.CSharp\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
 </Project>

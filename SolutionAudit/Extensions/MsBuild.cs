@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -32,14 +33,21 @@ namespace SolutionAudit.Extensions
 {
     static class MsBuild
     {
-        public static ILookup<PackageReference, string> GetDirectPackageAssemblies(this Project project)
+        public static ILookup<PackageReference, KeyValuePair<string, string>> GetDirectPackageAssemblies(this Project project)
         {
             return project.GetItems("Reference").ToLookup(r => r.GetPackageReference(), r => r.GetAssemblyName());
         }
 
-        private static string GetAssemblyName(this ProjectItem projectItem)
+        private static KeyValuePair<string, string> GetAssemblyName(this ProjectItem projectItem)
         {
-            return projectItem.EvaluatedInclude.Split(',')[0];
+            string[] includeParts = projectItem.EvaluatedInclude.Split(',').Select(i => i.Trim()).ToArray();
+            string name = includeParts[0];
+            string version = string.Empty;
+            if (includeParts.Length > 1)
+            {
+                version = includeParts.Where(p => p.Contains("Version")).Select(v => v.Replace("Version=", "")).FirstOrDefault();
+            }
+            return new KeyValuePair<string, string>(name, version);
         }
 
         private static PackageReference GetPackageReference(this ProjectItem projectItem)

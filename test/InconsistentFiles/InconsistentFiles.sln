@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.BadProjec
 		{F4B132BC-2642-4943-988F-1A59FD761A51} = {F4B132BC-2642-4943-988F-1A59FD761A51}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InconsistentFiles.MismatchBindingRedirect", "InconsistentFiles.MismatchBindingRedirect\InconsistentFiles.MismatchBindingRedirect.csproj", "{909246D6-D892-4C7D-8BCD-E3F72C91C93D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,8 +42,15 @@ Global
 		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB1168AF-51B8-49BC-A45C-531E9DBAD1C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909246D6-D892-4C7D-8BCD-E3F72C91C93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909246D6-D892-4C7D-8BCD-E3F72C91C93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909246D6-D892-4C7D-8BCD-E3F72C91C93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909246D6-D892-4C7D-8BCD-E3F72C91C93D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1439379-D391-4E72-BDA6-29A8B007A496}
 	EndGlobalSection
 EndGlobal
