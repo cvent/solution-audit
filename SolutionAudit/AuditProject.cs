@@ -232,7 +232,7 @@ namespace SolutionAudit
         public IEnumerable<OrphanOrMismatchAssemblyBinding> BindingRedirectMismatchReferences { get; set; }
         private IEnumerable<OrphanOrMismatchAssemblyBinding> GetBindingRedirectMismatchReferences()
         {
-            var allAssemblyIds = GetAllAssemblyReferences().SelectMany(p => p).ToDictionary(k => k.Key, v => v.Value);
+            var allAssemblyIds = GetAllAssemblyReferences().SelectMany(p => p).DistinctBy(d => d.Key).ToDictionary(k => k.Key, v => v.Value);
             return MsBuildProject.GetBindingRedirects()
                 .Where(br => !(allAssemblyIds.ContainsKey(br.Name) && allAssemblyIds[br.Name].Equals(br.NewVersion)))
                 .Select(br => new OrphanOrMismatchAssemblyBinding(br));
