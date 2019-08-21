@@ -3,7 +3,7 @@ source https://www.nuget.org/api/v2/
 nuget CommandLineParser20 2.0.0.0
 nuget log4net 2.0.3
 nuget Mono.Cecil 0.9.5.4
-nuget NuGet.Core 2.8.3
+nuget NuGet.Core 2.14.0
 nuget Roslyn.Services.CSharp 1.2.20906.2
 nuget NUnit 2.6.3
 nuget morelinq 1.1.0
