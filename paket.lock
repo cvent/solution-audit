@@ -7,7 +7,7 @@ NUGET
     Mono.Cecil (0.9.5.4)
     morelinq (1.1)
     NuGet.CommandLine (4.9.4)
-    NuGet.Core (2.8.3)
+    NuGet.Core (2.14)
       Microsoft.Web.Xdt (>= 2.1)
     NUnit (2.6.3)
     NUnit.Console (3.10)
