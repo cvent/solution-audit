@@ -34,7 +34,11 @@ namespace SolutionAudit
 
             Console.Write(solution.ToString());
 
-            return solution.PassAudit ? 0 : 1;
+            var result = solution.PassAudit ? 0 : 1;
+
+            Console.ReadKey();
+
+            return result;
         }
     }
 }

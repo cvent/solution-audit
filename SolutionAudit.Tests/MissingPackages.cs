@@ -32,7 +32,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/MissingPackages/MissingPackages.sln");
+            var solutionPath = Path.GetFullPath("test/MissingPackages/MissingPackages.sln");
             RoslynSolution = Solution.Load(solutionPath);
             Options = new Options {Missing = true};
         }

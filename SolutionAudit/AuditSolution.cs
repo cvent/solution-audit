@@ -19,7 +19,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
-using System.Threading.Tasks;
 using log4net;
 using NuGet;
 using Roslyn.Services;
@@ -44,9 +43,10 @@ namespace SolutionAudit
 
             Log.Debug("Auditing projects");
 
-            Projects = Solution.Load(solutionPath)
-                .Projects
-                .AsParallel()
+            var solution = Solution.Load(solutionPath);
+            var projects = solution.Projects;
+                
+            Projects = projects
                 .Select(p => new AuditProject(p, new FrameworkName(".NETFramework, Version=4.5"), options))
                 .ToArray();
 

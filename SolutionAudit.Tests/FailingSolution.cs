@@ -28,7 +28,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/NugetTargets/NugetTargets.sln");
+            var solutionPath = Path.GetFullPath("test/NugetTargets/NugetTargets.sln");
             var options = new Options { NugetTargets = true };
             _solution = new AuditSolution(solutionPath, options);
         }
@@ -36,7 +36,7 @@ namespace SolutionAudit.Tests
         [Test]
         public void SolutionPassesAudit()
         {
-            var solutionPath = Path.GetFullPath("../../../test/ProjectPackages/ProjectPackages.sln");
+            var solutionPath = Path.GetFullPath("test/ProjectPackages/ProjectPackages.sln");
             var options = new Options { NugetTargets = true };
             var solution = new AuditSolution(solutionPath, options);
             Assert.That(solution.PassAudit, Is.True);
@@ -60,19 +60,18 @@ namespace SolutionAudit.Tests
         public void IllegalSolutionFiles()
         {
             Assert.That(_solution.IllegalSolutionFiles.Count(), Is.EqualTo(1));
-            Assert.That(_solution.IllegalSolutionFiles.First().ToString(),
-                Is.StringContaining(@"\NugetTargets\.nuget"));
+            StringAssert.Contains(@"\NugetTargets\.nuget", _solution.IllegalSolutionFiles.First().ToString());
         }
 
         [Test]
         public void SolutionErrors()
         {
             var errorText = _solution.GetErrors();
-            Assert.That(errorText, Is.StringContaining(@"\NugetTargets\.nuget"));
+            StringAssert.Contains(@"\NugetTargets\.nuget", errorText);
 
             foreach (var project in _solution.Projects.Where(p => !p.PassAudit()))
             {
-                Assert.That(errorText, Is.StringContaining(project.ToString()));
+                StringAssert.Contains(project.ToString(), errorText);
             }
         }
 

@@ -9,3 +9,5 @@ deploy/
 .paket/paket.exe
 TestResult.xml
 *.userprefs
+.vs/
+.fake/

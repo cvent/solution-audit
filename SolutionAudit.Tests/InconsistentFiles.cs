@@ -32,7 +32,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/InconsistentFiles/InconsistentFiles.sln");
+            var solutionPath = Path.GetFullPath("test/InconsistentFiles/InconsistentFiles.sln");
             RoslynSolution = Solution.Load(solutionPath);
             Options = new Options {FileDiff = true};
         }

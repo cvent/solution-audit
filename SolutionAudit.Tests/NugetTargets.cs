@@ -33,7 +33,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/NugetTargets/NugetTargets.sln");
+            var solutionPath = Path.GetFullPath("test/NugetTargets/NugetTargets.sln");
             RoslynSolution = Solution.Load(solutionPath);
             Options = new Options { NugetTargets = true };
         }
@@ -55,13 +55,13 @@ namespace SolutionAudit.Tests
 
             var importIssues = issues.Where(a => a.Contains("<Import"));
             Assert.That(importIssues.Count(), Is.EqualTo(1));
-            Assert.That(importIssues.First(), Is.StringContaining(@"<Import Project=""$(SolutionDir)\.nuget\NuGet.targets"" ...>"));
-            Assert.That(importIssues.First(), Is.StringContaining(@"\test\NugetTargets\WithTargets\WithTargets.csproj (60,3)"));
+            StringAssert.Contains(@"<Import Project=""$(SolutionDir)\.nuget\NuGet.targets"" ...>", importIssues.First());
+            StringAssert.Contains(@"\test\NugetTargets\WithTargets\WithTargets.csproj (60,3)", importIssues.First());
 
             var targetIssues = issues.Where(a => a.Contains("<Error"));
             Assert.That(targetIssues.Count(), Is.EqualTo(1));
-            Assert.That(targetIssues.First(), Is.StringContaining(@"<Error Condition=""!Exists('$(SolutionDir)\.nuget\NuGet.targets')"" ...>"));
-            Assert.That(targetIssues.First(), Is.StringContaining(@"\test\NugetTargets\WithTargets\WithTargets.csproj (65,5)"));
+            StringAssert.Contains(@"<Error Condition=""!Exists('$(SolutionDir)\.nuget\NuGet.targets')"" ...>", targetIssues.First());
+            StringAssert.Contains(@"\test\NugetTargets\WithTargets\WithTargets.csproj (65,5)", targetIssues.First());
         }
     }
 }
