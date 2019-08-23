@@ -67,7 +67,7 @@ Target.create "NuPack" ( fun _ ->
             Authors = authors
             Summary = summary
             Description = summary
-            Version = "1.2.1"
+            Version = "1.2.2"
             Publish = false
             Files = [
                     (@"..\SolutionAudit\bin\Release\*", Some "tools", None)

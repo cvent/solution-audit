@@ -234,7 +234,9 @@ namespace SolutionAudit
         {
             var allAssemblyIds = GetAllAssemblyReferences().SelectMany(p => p).DistinctBy(d => d.Key).ToDictionary(k => k.Key, v => v.Value);
             return MsBuildProject.GetBindingRedirects()
-                .Where(br => !(allAssemblyIds.ContainsKey(br.Name) && allAssemblyIds[br.Name].Equals(br.NewVersion)))
+                .Where(br => !allAssemblyIds.ContainsKey(br.Name))
+                // TODO: Replace with the below check for inconsistent versions when it has been wrapped in a CLI flag for back-compat
+                //.Where(br => !(allAssemblyIds.ContainsKey(br.Name) && allAssemblyIds[br.Name].Equals(br.NewVersion)))
                 .Select(br => new OrphanOrMismatchAssemblyBinding(br));
         }
 

@@ -36,8 +36,6 @@ namespace SolutionAudit
 
             var result = solution.PassAudit ? 0 : 1;
 
-            Console.ReadKey();
-
             return result;
         }
     }

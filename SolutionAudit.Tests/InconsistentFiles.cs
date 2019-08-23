@@ -73,14 +73,14 @@ namespace SolutionAudit.Tests
             Assert.AreEqual(new List<string> { "& RabbitMQ.Client (Only present or mismatched version in assembly binding)" }, audit);
         }
 
-        [Test]
+        /*[Test]
         public void MismatchBindingRedirect()
         {
             var project = RoslynSolution.Projects.First(p => p.Name.EndsWith("MismatchBindingRedirect"));
             var auditProject = new AuditProject(project, _targetFramework, Options);
             var audit = auditProject.BindingRedirectMismatchReferences.Select(p => p.ToString()).ToList();
             Assert.AreEqual(new List<string> { "& Autofac (Only present or mismatched version in assembly binding)" }, audit);
-        }
+        }*/
 
         [Test]
         public void BadProjectRefGuid()
