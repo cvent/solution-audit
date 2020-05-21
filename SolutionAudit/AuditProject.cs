@@ -191,6 +191,7 @@ namespace SolutionAudit
                 // References in packages.config may not have assemblies, these don't show up in .csproj
                 .Where(r => r.GetPackage(LocalRepository).AssemblyReferences.Any())
                 .Where(r => !r.Id.Equals("Microsoft.Net.Http")) // This package is weird, it uses the GAC assembly instead of the one it ships with.
+                .Where(r => !r.Id.Equals("Microsoft.CSharp")) // This is now shipped as a Framework assembly
                 .Select(r => new InconsistentFiles(r, "packages.config"));
 
             var csprojOnlyReferences = CsprojReferences.Except(ConfigReferences)
