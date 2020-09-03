@@ -44,7 +44,7 @@ namespace SolutionAudit
             Log.Debug("Auditing projects");
 
             var solution = Solution.Load(solutionPath);
-            var projects = solution.Projects;
+            var projects = solution.Projects.AsParallel();
                 
             Projects = projects
                 .Select(p => new AuditProject(p, new FrameworkName(".NETFramework, Version=4.5"), options))
