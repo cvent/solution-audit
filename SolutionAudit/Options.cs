@@ -24,6 +24,7 @@ namespace SolutionAudit
         private bool _inconsistent;
         private bool _snapshot;
         private bool _fileDiff;
+        private bool _redirectMismatch;
         private bool _nugetTargets;
         private bool _all = true;
 
@@ -90,7 +91,7 @@ namespace SolutionAudit
             }
         }
 
-        [Option('f', "fileDiff", DefaultValue = false, HelpText = "Give information on out of sync packages/assemblies between csproj, packages.config and binding redirects [&].")]
+        [Option('f', "fileDiff", DefaultValue = false, HelpText = "Give information on out of sync packages/assemblies between csproj, packages.config and orphan binding redirects [&].")]
         public bool FileDiff
         {
             get { return _fileDiff || All; }
@@ -98,6 +99,18 @@ namespace SolutionAudit
             {
                 if (_fileDiff != value) _all = false;
                 _fileDiff = value;
+            }
+        }
+
+        
+        [Option('r', "redirectMismatch", DefaultValue = false, HelpText = "Give information on mismatched assembly versions between csproj and binding redirect targets [^].")]
+        public bool RedirectMismatch
+        {
+            get { return _redirectMismatch || All; }
+            set
+            {
+                if (_redirectMismatch != value) _all = false;
+                _redirectMismatch = value;
             }
         }
 

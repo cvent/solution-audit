@@ -21,6 +21,11 @@ open Fake.DotNet.NuGet
 open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.IO
+open System.Net
+open NUnit3
+
+// Get Tls 1.2 working for nuget restores with old nuget executables
+ServicePointManager.SecurityProtocol <- ServicePointManager.SecurityProtocol ||| SecurityProtocolType.Tls12
 
 // The name of the project
 // (used by name of a NuGet package)
@@ -55,6 +60,7 @@ Target.create "RestoreTestPackages" (fun _ ->
 Target.create "Test" (fun _ ->
     NUnit3.run ( fun p ->
         {p with
+            Domain = NUnit3DomainModel.DefaultDomainModel
             ToolPath = "packages/NUnit.ConsoleRunner/tools/nunit3-console.exe"
         })
         testDlls
@@ -67,7 +73,7 @@ Target.create "NuPack" ( fun _ ->
             Authors = authors
             Summary = summary
             Description = summary
-            Version = "1.2.2"
+            Version = "1.3.0"
             Publish = false
             Files = [
                     (@"..\SolutionAudit\bin\Release\*", Some "tools", None)
