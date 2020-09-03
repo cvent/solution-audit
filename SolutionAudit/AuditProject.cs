@@ -76,10 +76,15 @@ namespace SolutionAudit
                 ? GetDuplicatePackageReferences()
                 : Enumerable.Empty<DuplicatePackageReference>();
 
-            // Duplicate Package References
-            BindingRedirectMismatchReferences = options.FileDiff
+            // Orphan Binding Redirects
+            BindingRedirectOnlyReferences = options.FileDiff
+                ? GetBindingRedirectOnlyReferences()
+                : Enumerable.Empty<OrphanAssemblyBinding>();
+
+            // Mismatched Binding Redirects
+            BindingRedirectMismatchReferences = options.RedirectMismatch
                 ? GetBindingRedirectMismatchReferences()
-                : Enumerable.Empty<OrphanOrMismatchAssemblyBinding>();
+                : Enumerable.Empty<MismatchAssemblyBinding>();
 
             BadProjectRefGuids = options.FileDiff
                 ? GetBadProjectRefGuids()
@@ -99,6 +104,7 @@ namespace SolutionAudit
                    && SnapshotPackages.IsEmpty()
                    && MissingPackageReferences.IsEmpty()
                    && DuplicatePackageReferences.IsEmpty()
+                   && BindingRedirectOnlyReferences.IsEmpty()
                    && BindingRedirectMismatchReferences.IsEmpty()
                    && BadProjectRefGuids.IsEmpty()
                    && IllegalNugetTargets.IsEmpty();
@@ -230,13 +236,25 @@ namespace SolutionAudit
             return configDuplicates.Concat(csprojDuplicates);
         }
 
-        public IEnumerable<OrphanOrMismatchAssemblyBinding> BindingRedirectMismatchReferences { get; set; }
-        private IEnumerable<OrphanOrMismatchAssemblyBinding> GetBindingRedirectMismatchReferences()
+        public IEnumerable<OrphanAssemblyBinding> BindingRedirectOnlyReferences { get; set; }
+
+        private IEnumerable<OrphanAssemblyBinding> GetBindingRedirectOnlyReferences()
         {
-            var allAssemblyIds = GetAllAssemblyReferences().SelectMany(p => p).DistinctBy(d => d.Key).ToDictionary(k => k.Key, v => v.Value);
+            var allAssemblyIds = GetAllAssemblyReferences().SelectMany(p => p).Select(k => k.Key).ToHashSet();
             return MsBuildProject.GetBindingRedirects()
-                .Where(br => !(allAssemblyIds.ContainsKey(br.Name) && allAssemblyIds[br.Name].Equals(br.NewVersion)))
-                .Select(br => new OrphanOrMismatchAssemblyBinding(br));
+                .Where(br => !allAssemblyIds.Contains(br.Name))
+                .Select(br => new OrphanAssemblyBinding(br));
+        }
+
+        public IEnumerable<MismatchAssemblyBinding> BindingRedirectMismatchReferences { get; set; }
+
+        private IEnumerable<MismatchAssemblyBinding> GetBindingRedirectMismatchReferences()
+        {
+            var allAssemblyIds = GetAllAssemblyReferences().SelectMany(p => p).DistinctBy(d => d.Key)
+                .ToDictionary(k => k.Key, v => v.Value);
+            return MsBuildProject.GetBindingRedirects()
+                .Where(br => allAssemblyIds.ContainsKey(br.Name) && !allAssemblyIds[br.Name].Equals(br.NewVersion))
+                .Select(br => new MismatchAssemblyBinding(br, allAssemblyIds[br.Name]));
         }
 
         public IEnumerable<IllegalProjectFileElement> IllegalNugetTargets { get; set; }
@@ -285,6 +303,7 @@ namespace SolutionAudit
             ProjectPackages.ForEach(p => sb.AppendFormat("\t{0}\n", p));
             MissingPackages.ForEach(p => sb.AppendFormat("\t{0}\n", p));
             MissingPackageReferences.ForEach(p => sb.AppendFormat("\t{0}\n", p));
+            BindingRedirectOnlyReferences.ForEach(p => sb.AppendFormat("\t{0}\n", p));
             BindingRedirectMismatchReferences.ForEach(p => sb.AppendFormat("\t{0}\n", p));
             SnapshotPackages.ForEach(p => sb.AppendFormat("\t{0}\n", p));
             DuplicatePackageReferences.ForEach(p => sb.AppendFormat("\t{0}\n", p));

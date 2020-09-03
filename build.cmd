@@ -12,7 +12,7 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-SET TARGET="Default"
+SET TARGET="Build"
 
 IF NOT [%1]==[] (set TARGET="%1")
 

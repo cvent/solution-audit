@@ -14,7 +14,18 @@
 
 #I @"packages/FAKE/tools/"
 #r @"FakeLib.dll"
-open Fake
+open Fake.Core
+open Fake.Core.TargetOperators
+open Fake.DotNet
+open Fake.DotNet.NuGet
+open Fake.IO.Globbing.Operators
+open Fake.DotNet.Testing
+open Fake.IO
+open System.Net
+open NUnit3
+
+// Get Tls 1.2 working for nuget restores with old nuget executables
+ServicePointManager.SecurityProtocol <- ServicePointManager.SecurityProtocol ||| SecurityProtocolType.Tls12
 
 // The name of the project
 // (used by name of a NuGet package)
@@ -31,35 +42,38 @@ let solutions = ["./SolutionAudit.sln"]
 let testPackages = !! "./test/**/packages.config"
 let testDlls = !! "./**/bin/**/*.Tests.dll"
 
-Target "Clean" (fun _ ->
-    MSBuildWithDefaults "Clean" solutions
-    |> Log "AppClean-Output: "
+Target.create "Clean" (fun _ ->
+    MSBuild.runWithDefaults "Clean" solutions |> (fun _ -> ())
 )
 
-Target "BuildSolutions" (fun _ ->
-    MSBuildWithDefaults "Build" solutions
-    |> Log "AppBuild-Output: "
+Target.create "Build" (fun _ ->
+    MSBuild.runWithDefaults "Build" solutions |> (fun _ -> ())
 )
 
-Target "RestoreTestPackages" (fun _ ->
+Target.create "RestoreTestPackages" (fun _ ->
     testPackages
-    |> Seq.iter (fun s -> RestorePackage (fun p ->
+    |> Seq.iter (fun s -> Restore.RestorePackage (fun p ->
         { p with
-            OutputPath = (DirectoryName (DirectoryName s)) @@ "packages"}) s)
+            OutputPath = Path.combine (Path.getDirectory (Path.getDirectory s)) "packages"}) s)
 )
 
-Target "Test" (fun _ ->
-     NUnit id testDlls
+Target.create "Test" (fun _ ->
+    NUnit3.run ( fun p ->
+        {p with
+            Domain = NUnit3DomainModel.DefaultDomainModel
+            ToolPath = "packages/NUnit.ConsoleRunner/tools/nunit3-console.exe"
+        })
+        testDlls
 )
 
-Target "NuPack" ( fun _ ->
-    NuGet (fun p ->
+Target.create "NuPack" ( fun _ ->
+    NuGet.NuGetPack (fun p ->
         {p with
             Project = project
             Authors = authors
             Summary = summary
             Description = summary
-            Version = "1.2.1"
+            Version = "1.3.0"
             Publish = false
             Files = [
                     (@"..\SolutionAudit\bin\Release\*", Some "tools", None)
@@ -67,13 +81,10 @@ Target "NuPack" ( fun _ ->
       "SolutionAudit.nuspec"
 )
 
-Target "Default" DoNothing
-
 "Clean"
-    ==> "BuildSolutions"
-    ==> "Default"
+    ==> "Build"
     ==> "RestoreTestPackages"
     ==> "Test"
     ==> "NuPack"
 
-RunTargetOrDefault "Default"
+Target.runOrDefault "Build"

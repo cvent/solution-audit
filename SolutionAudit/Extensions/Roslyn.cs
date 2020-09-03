@@ -12,12 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Build.Evaluation;
-using MoreLinq;
 using NuGet;
 using Roslyn.Compilers.Common;
 using Roslyn.Compilers.CSharp;
@@ -27,6 +25,9 @@ namespace SolutionAudit.Extensions
 {
     static class Roslyn
     {
+        private static object _projectCollectionLock = new object();
+        private static object _semanticModelLock = new object();
+
         public static IEnumerable<IProject> GetProjectReferences(this IProject project)
         {
             return Utils.Closure(project, GetDirectProjectReferences);
@@ -71,14 +72,19 @@ namespace SolutionAudit.Extensions
             return method.Parameters.AsEnumerable().Select(p => p.Type)
                 .Concat(new List<ITypeSymbol> {method.ReturnType});
         }
-
+        
         public static Project GetMsBuildProject(this IProject project)
         {
-            var projectPath = Path.GetFullPath(project.FilePath);
+            // testing shows GlobalProjectCollection might have concurrency issues when loading projects
+            // that reference the same project in parallel.
+            lock (_projectCollectionLock)
+            {
+                var projectPath = Path.GetFullPath(project.FilePath);
 
-            return ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).IsEmpty()
-                ? new Project(projectPath)
-                : ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).First();
+                return ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).IsEmpty()
+                    ? new Project(projectPath)
+                    : ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectPath).First();
+            }
         }
 
         public static IPackageRepository GetLocalPackageRepository(this ISolution solution)
@@ -92,7 +98,15 @@ namespace SolutionAudit.Extensions
 
         public static IEnumerable<IAssemblySymbol> GetUsedAssemblies(this IDocument document, bool lookAtUnusedUsings)
         {
-            var semanticModel = document.GetSemanticModel();
+            // this is the most expensive operation, but once we get the semantic model for one document, it seems to 
+            // have the model ready for all documents in the solution (not sure if feature or positive side effect).
+            // so it makes sense to lock here to avoid duplicating any effort when processing projects in parallel
+            ISemanticModel semanticModel;
+            lock (_semanticModelLock)
+            {
+                semanticModel = document.GetSemanticModel();
+            }
+
             if (semanticModel == null) return Enumerable.Empty<IAssemblySymbol>();
 
             var unusedUsings = lookAtUnusedUsings

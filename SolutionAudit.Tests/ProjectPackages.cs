@@ -18,7 +18,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/ProjectPackages/ProjectPackages.sln");
+            var solutionPath = Path.GetFullPath("test/ProjectPackages/ProjectPackages.sln");
             RoslynSolution = Solution.Load(solutionPath);
             Options = new Options {Project = true};
         }

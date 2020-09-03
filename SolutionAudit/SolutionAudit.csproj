@@ -70,7 +70,8 @@
   <ItemGroup>
     <Compile Include="AuditInformation\IllegalFile.cs" />
     <Compile Include="AuditInformation\MismatchedGuid.cs" />
-    <Compile Include="AuditInformation\OrphanAssemblyReference.cs" />
+    <Compile Include="AuditInformation\MismatchAssemblyBinding.cs" />
+    <Compile Include="AuditInformation\OrphanAssemblyBinding.cs" />
     <Compile Include="AuditInformation\DuplicatePackageReference.cs" />
     <Compile Include="AuditInformation\IllegalProjectFileElement.cs" />
     <Compile Include="AuditInformation\ProjectPackage.cs" />

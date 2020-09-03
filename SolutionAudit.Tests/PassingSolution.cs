@@ -28,7 +28,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/ProjectPackages/ProjectPackages.sln");
+            var solutionPath = Path.GetFullPath("test/ProjectPackages/ProjectPackages.sln");
             var options = new Options { NugetTargets = true };
             _solution = new AuditSolution(solutionPath, options);
         }

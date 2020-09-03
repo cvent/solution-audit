@@ -32,7 +32,7 @@ namespace SolutionAudit.Tests
         [SetUp]
         public void Setup()
         {
-            var solutionPath = Path.GetFullPath("../../../test/InconsistentFiles/InconsistentFiles.sln");
+            var solutionPath = Path.GetFullPath("test/InconsistentFiles/InconsistentFiles.sln");
             RoslynSolution = Solution.Load(solutionPath);
             Options = new Options {FileDiff = true};
         }
@@ -69,17 +69,17 @@ namespace SolutionAudit.Tests
         {
             var project = RoslynSolution.Projects.First(p => p.Name.EndsWith("OnlyBindingRedirect"));
             var auditProject = new AuditProject(project, _targetFramework, Options);
-            var audit = auditProject.BindingRedirectMismatchReferences.Select(p => p.ToString()).ToList();
-            Assert.AreEqual(new List<string> { "& RabbitMQ.Client (Only present or mismatched version in assembly binding)" }, audit);
+            var audit = auditProject.BindingRedirectOnlyReferences.Select(p => p.ToString()).ToList();
+            Assert.AreEqual(new List<string> { "& RabbitMQ.Client (Only present in assembly binding)" }, audit);
         }
 
         [Test]
         public void MismatchBindingRedirect()
         {
             var project = RoslynSolution.Projects.First(p => p.Name.EndsWith("MismatchBindingRedirect"));
-            var auditProject = new AuditProject(project, _targetFramework, Options);
+            var auditProject = new AuditProject(project, _targetFramework, new Options {RedirectMismatch = true});
             var audit = auditProject.BindingRedirectMismatchReferences.Select(p => p.ToString()).ToList();
-            Assert.AreEqual(new List<string> { "& Autofac (Only present or mismatched version in assembly binding)" }, audit);
+            Assert.AreEqual(new List<string> { "^ Autofac 3.4.0.0 (Assembly binding redirects to 3.5.0.0)" }, audit);
         }
 
         [Test]
