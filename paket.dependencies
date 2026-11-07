@@ -11,4 +11,4 @@ nuget NUnit3TestAdapter
 nuget morelinq 1.1.0
 nuget slntools.core
 nuget fake
-nuget nuget.commandline 2.8.6
+nuget nuget.commandline 2.12.0
