@@ -8,7 +8,7 @@ nuget Roslyn.Services.CSharp 1.2.20906.2
 nuget NUnit 3
 nuget NUnit.ConsoleRunner
 nuget NUnit3TestAdapter
-nuget morelinq 1.1.0
+nuget morelinq 1.4.0
 nuget slntools.core
 nuget fake
 nuget nuget.commandline 2.8.6
